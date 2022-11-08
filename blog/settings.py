@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home',
     'movie',
     'serie',
+    'director',
 ]
 
 MIDDLEWARE = [
