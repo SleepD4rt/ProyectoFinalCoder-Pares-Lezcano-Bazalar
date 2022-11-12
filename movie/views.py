@@ -3,11 +3,20 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.forms.models import model_to_dict
 
+from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from movie.models import Movie
+
+
 from movie.models import Movie
 from movie.forms import MovieForm
 
 
-def get_movies(request):
+"""def get_movies(request):
     movie = Movie.objects.all()
     paginator = Paginator(movie, 3)
     page_number = request.GET.get("page")
@@ -49,16 +58,9 @@ def create_movies (request):
                     messages.error(
                         request,
                         f"El movie {data['name']} - {data['release_date']} - {data['produced_by']} ya está creado",
-                    )
+                    )"""
 
 
-from django.core.exceptions import ValidationError
-from django.urls import reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-from movie.models import Movie
 
 
 
