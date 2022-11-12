@@ -10,30 +10,30 @@ class MovieForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "movie-name",
-                "placeholder": "introduzca nombre de la pelicula",
+                "placeholder": "introduzca nombre",
                 "required": "True",
             }
         ),
     )
     
     release_date = forms.DateField(
-        label="NFecha de estreno",
+        label="Fecha de estreno",
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "movie-name",
-                "placeholder": "introduzca fecha de estreno",
+                "placeholder": "introduzca fecha",
                 "required": "True",
             }
         ),
     )
     produced_by = forms.CharField(
-        label="Dirigida por : ",
+        label="Dirigida por",
         required=False,
         widget=forms.TextInput(
             attrs={
                 "class": "movie-produced_by",
-                "placeholder": "introduzca nombre del director/a",
+                "placeholder": "introduzca nombre",
                 "required": "True",
             }
         ),

@@ -9,6 +9,7 @@ from home import views
 
 app_name = "home"
 urlpatterns = [
-    path("", include("home.urls")),
+    path("", views.index, name="index"),
+
     ]
 
