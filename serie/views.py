@@ -38,7 +38,7 @@ class SerieDetailView(DetailView):
 #LoginRequiredMixin
 class SerieCreateView(CreateView):
     model = Serie
-    success_url = reverse_lazy("serie:serie-list")
+    #success_url = reverse_lazy("serie:serie-list")
 
     form_class = SerieForm
     # fields = ["name", "code", "description"]
