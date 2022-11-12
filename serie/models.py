@@ -14,7 +14,7 @@ class Serie(models.Model):
     director = models.CharField(max_length=40, null=False, blank=False)
     actor = RichTextField(null=True, blank=True)
     studio = models.CharField(max_length=40, null=False, blank=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    #owner = models.ForeignKey(User, on_delete=models.CASCADE)
     #comments = models.ManyToManyField(
     #    User, through="Comment", related_name="comments_owned"
     #)

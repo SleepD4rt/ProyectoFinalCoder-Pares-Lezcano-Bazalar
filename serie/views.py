@@ -38,17 +38,19 @@ class SerieDetailView(DetailView):
 #LoginRequiredMixin
 class SerieCreateView(CreateView):
     model = Serie
-    #success_url = reverse_lazy("serie:serie-list")
 
+    success_url = reverse_lazy("serie-list")
+    
     form_class = SerieForm
     # fields = ["name", "code", "description"]
 
     def form_valid(self, form):
         """Filter to avoid duplicate series"""
         data = form.cleaned_data
-        form.instance.owner = self.request.user
+       # form.instance.owner = self.request.user
         actual_objects = Serie.objects.filter(
-            name=data["name"], code=data["studio"]
+            name=data["name"], 
+            #code=data["studio"]
         ).count()
         if actual_objects:
             messages.error(
