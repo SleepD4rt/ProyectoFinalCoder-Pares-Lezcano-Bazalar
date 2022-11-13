@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.db import models
 from ckeditor.fields import RichTextField
 
@@ -13,4 +11,3 @@ class Movie(models.Model):
     def __str__(self):
         return f"Name: {self.name} - Release_date: {self.release_date} - Produced_by: {self.produced_by} - description: {self.description} "
         
->>>>>>> movie
