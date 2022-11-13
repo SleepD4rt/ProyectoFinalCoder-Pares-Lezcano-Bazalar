@@ -75,7 +75,7 @@ class SerieForm(forms.ModelForm):
     )
 
     actor = forms.CharField(
-        label="Descripción:",
+        label="Actores:",
         required=False,
         widget=CKEditorWidget(),
     )
@@ -110,14 +110,10 @@ class SerieForm(forms.ModelForm):
         fields = ["name", "descript", "chapter", "season", "rating", "director", "actor", "studio", "release_date"]
 
 
-  
-
-  
-
-
+"""
 class CommentForm(forms.Form):
     comment_text = forms.CharField(
-        label="",
+        label="Comentarios",
         required=False,
         max_length=500,
         min_length=10,
@@ -136,3 +132,4 @@ class CommentForm(forms.Form):
         ),
     )
 
+"""
