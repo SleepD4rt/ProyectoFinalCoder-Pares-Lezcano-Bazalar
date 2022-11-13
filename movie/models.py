@@ -8,6 +8,13 @@ class Movie(models.Model):
     produced_by = models.CharField(max_length=20)
     description = RichTextField(null=True, blank=True)
 
+    class Meta:
+        unique_together = (
+            "name",
+            "produced_by",
+        )
+    ordering = ["-realease_date"]
+
     def __str__(self):
         return f"Name: {self.name} - Release_date: {self.release_date} - Produced_by: {self.produced_by} - description: {self.description} "
         

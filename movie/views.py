@@ -12,7 +12,7 @@ from movie.forms import MovieForm
 
 class MovieListView(ListView):
     model = Movie
-    paginate_by = 3
+    paginate_by = 6
 
 class MovieDetailView(DetailView):
     model = Movie
@@ -20,6 +20,7 @@ class MovieDetailView(DetailView):
 
 #LoginRequiredMixin
 class MovieCreateView(CreateView):
+    
     model = Movie
     success_url = reverse_lazy("movie:movie-list")
 

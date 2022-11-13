@@ -42,7 +42,6 @@ class SerieCreateView(CreateView):
     success_url = reverse_lazy("serie-list")
     
     form_class = SerieForm
-    # fields = ["name", "code", "description"]
 
     def form_valid(self, form):
         """Filter to avoid duplicate series"""
