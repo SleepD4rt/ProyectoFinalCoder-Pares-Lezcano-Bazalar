@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.urls import reverse_lazy
@@ -18,6 +19,16 @@ class MovieDetailView(DetailView):
     model = Movie
     fields = ["name", "release_date", "produced_by", "description"]
 
+    def get(self, request, pk):
+        movie = Movie.objects.get(id=pk)
+        #comments = Comment.objects.filter(movie=movie).order_by("-updated_at")
+        #comment_form = CommentForm()
+        context = {
+            "movies": movie,
+            #"comments": comments,
+        #    "comment_form": comment_form,
+        }
+        return render(request, self.template_name, context)
 #LoginRequiredMixin
 class MovieCreateView(CreateView):
     model = Movie
@@ -36,14 +47,14 @@ class MovieCreateView(CreateView):
         if actual_objects:
             messages.error(
                 self.request,
-                f"La Movie {data['name']} {data['release_date']} | {data['produced_by']} ya está creado",
+                f"La Pelicula {data['name']} {data['release_date']} | {data['produced_by']} ya está creado",
             )
             form.add_error("name", ValidationError("Acción no válida"))
             return super().form_invalid(form)
         else:
             messages.success(
                 self.request,
-                f"Movie: {data['name']} - {data['release_date']} | {data['produced_by']}. Creado exitosamente!",
+                f"La pelicula {data['name']} - {data['release_date']} | {data['produced_by']}. Creado exitosamente!",
             )
             return super().form_valid(form)
 

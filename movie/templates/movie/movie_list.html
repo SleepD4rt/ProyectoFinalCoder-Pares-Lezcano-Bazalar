@@ -55,7 +55,8 @@
                             <ul>
                                 <li><a href="{% url 'home:index' %}">Inicio</a></li>
 
-                                <li><a href="{% url 'movie:movie-list' %}"></a>>Peliculas</a>
+                                <li><a href="{% url 'serie:serie-list' %}">Series</a></li>
+                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a></li>
                                 <li><a href="./categories.html">Directores</a>
                                     <!-- CATEGORIAS, VEMOS SI LO PONEMOS
                                     <ul class="dropdown">
@@ -376,7 +377,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="{% url 'movie:movie-add' %}" class="primary-btn">Agregar movie<span class="arrow_right"></span></a>
+                                    <a href="{% url 'movie:movie-add' %}" class="primary-btn">Agregar pelicula<span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -396,7 +397,7 @@
                                             <li>Movie</li>
                                         </ul>
                                         <h5><a href="#">
-                                            {% for movie in movie_list %}
+                                            {% for movie in movie %}
                                             <!-- Post preview-->
                                             <div class="container">
                                                 <div class="row">
