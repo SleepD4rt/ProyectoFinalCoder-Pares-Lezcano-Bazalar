@@ -21,11 +21,8 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("home.urls")),
-<<<<<<< HEAD
     path("serie/", include("serie.urls")),
-=======
     path("movie/", include("movie.urls")),
->>>>>>> movie
     ]
 
 if settings.DEBUG:
