@@ -16,13 +16,13 @@ from serie.models import Serie
 
 class serieListView(ListView):
     model = Serie
-    paginate_by = 12
+    paginate_by = 3
 
 
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "descript", "chapter", "season", "rating", "director", "actor", "studio", "release_date"]
+    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get(self, request, pk):
         serie = Serie.objects.get(id=pk)
@@ -39,24 +39,24 @@ class SerieDetailView(DetailView):
 class SerieCreateView(CreateView):
     model = Serie
 
-    success_url = reverse_lazy("serie-list")
+    success_url = reverse_lazy("serie:serie-list")
     
     form_class = SerieForm
 
     def form_valid(self, form):
         """Filter to avoid duplicate series"""
         data = form.cleaned_data
-       # form.instance.owner = self.request.user
         actual_objects = Serie.objects.filter(
             name=data["name"], 
-            #code=data["studio"]
+            studio=data["studio"],
         ).count()
         if actual_objects:
             messages.error(
                 self.request,
-                f"La serie {data['name']} - {data['studio']} ya está creado",
+                f"La serie {data['name']}, producida por {data['studio']} ya está creada",
             )
             form.add_error("name", ValidationError("Acción no válida"))
+            
             return super().form_invalid(form)
         else:
             messages.success(
@@ -68,7 +68,7 @@ class SerieCreateView(CreateView):
 #LoginRequiredMixin
 class SerieUpdateView(UpdateView):
     model = Serie
-    fields = ["name", "descript", "chapter", "season", "rating", "director", "actor", "studio", "release_date"]
+    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]

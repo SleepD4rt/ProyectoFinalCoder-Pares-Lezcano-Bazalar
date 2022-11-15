@@ -368,6 +368,15 @@
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
                     {% block content %}
                     <div class="recent__product">
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                    {% endif %}
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
