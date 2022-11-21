@@ -34,7 +34,7 @@ Carga de series
         }
     </style>
         <div class="container">
-                <form action="" method="POST" class="form-lbl">
+                <form action="" method="POST" class="form-lbl" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.media }} <!-- ckeditor-->
                     {{ form.as_p }}
