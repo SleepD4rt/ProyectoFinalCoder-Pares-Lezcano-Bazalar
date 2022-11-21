@@ -10,7 +10,7 @@ class Serie(models.Model):
     chapter = models.IntegerField(null=False, blank=False)
     season = models.IntegerField(null=False, blank=False)
     rating = models.FloatField(null=False, blank=False)
-    #image = models.ImageField(upload_to='serie', null=True, blank=True)
+    image = models.ImageField(upload_to='serie', null=True, blank=True)
     director = models.CharField(max_length=40, null=False, blank=False)
     actor = RichTextField(null=True, blank=True)
     studio = models.CharField(max_length=40, null=False, blank=False)
@@ -40,7 +40,8 @@ class Comment(models.Model):
         ]
     )
     serie = models.ForeignKey(Serie, on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    #owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 """

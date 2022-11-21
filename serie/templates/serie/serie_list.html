@@ -45,7 +45,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                            <img src="" alt="">
                         </a>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             <ul>
                                 <li><a href="{% url 'home:index' %}">Inicio</a></li>
                                 <li><a href="{% url 'serie:serie-list' %}">Series</a>
-                                <li><a href="./categories.html">Peliculas</a>
+                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a>
                                 <li><a href="./categories.html">Directores</a>
                                     <!-- CATEGORIAS, VEMOS SI LO PONEMOS
                                     <ul class="dropdown">
@@ -367,6 +367,9 @@
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
                     {% block content %}
+                    
+
+                    
                     <div class="recent__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
@@ -381,24 +384,51 @@
                             </div>
                         </div>
                         <div class="row">
+
+                            <!-- Messages-->
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                    {% endif %}
+                </div>
+            </div>
+        </div>
                             <!--DIVISION POR SERIE /PELICULA-->
-                            
+                            {% if serie_list %}
+                            {% for serie in serie_list %}
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-1.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <div class="product__item__pic set-bg" data-setbg="">
+                                         <!-- Image -->
+                                            {% if serie.image %}
+                                                 <div style="text-align: center;">
+                                                    <img height="250px" src="{{ serie.image.url }}">
+                                                </div>
+                                            {% endif %}
+
+                                        <div class="ep">{{serie.chapter}}</div>
+                                        <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
+                                        <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
                                     </div>
                                     <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
+                                        <ul><!--Categorias-->
+                                            <li>Serie</li>
+                                            <!--<li>Movie</li>-->
                                         </ul>
-                                        <h5><a href="#">Great Teacher Onizuka</a></h5>
+                                        <h5><a href="#">{{serie.name}}</a></h5>
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
+                            {% endif %}
                             {% endblock %}
                             <!--DIVISION POR SERIE /PELICULA-->
                             <!-- 
@@ -725,7 +755,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <a href="./index.html"><img src="" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-8">
@@ -734,7 +764,7 @@
                         <ul>
                             <li><a href="{% url 'home:index' %}">Inicio</a></li>
                             <li><a href="{% url 'serie:serie-list' %}">Series</a>
-                            <li><a href="./categories.html">Peliculas</a>
+                            <li><a href="{% url 'movie:movie-list' %}">Peliculas</a>
                             <li><a href="./categories.html">Directores</a>
                                 <!-- CATEGORIAS, VEMOS SI LO PONEMOS
                                 <ul class="dropdown">
