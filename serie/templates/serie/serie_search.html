@@ -77,7 +77,6 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        
 
 
 
@@ -373,74 +372,63 @@
 
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
-
-                    {% block content %}
+                            {% block content %}
                     
-                   
 
                     
-                    <div class="recent__product">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="section-title">
-                                    <h4>SERIES</h4>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="{% url 'serie:serie-add' %}" class="primary-btn">Agregar Serie<span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-
-                            <!-- Messages-->
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert {{ message.tags }}" role="alert">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                        <!-- Divider-->
-                        <hr class="my-4" />
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-                            <!--DIVISION POR SERIE /PELICULA-->
-                            {% if serie_list %}
-                            {% for serie in serie_list %}
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="">
-                                         <!-- Image -->
-                                            {% if serie.image %}
-                                                 <div style="text-align: center;">
-                                                    <img height="250px" src="{{ serie.image.url }}">
-                                                </div>
-                                            {% endif %}
-
-                                        <div class="ep">{{serie.chapter}}</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
-                                        <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
+                            <div class="recent__product">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 col-sm-8">
+                                        <div class="section-title">
+                                            <h4>SERIES</h4>
+                                        </div>
                                     </div>
-                                    <div class="product__item__text">
-                                        <ul><!--Categorias-->
-                                            <li>Serie</li>
-                                            <!--<li>Movie</li>-->
-                                        </ul>
-                                        <h5><a href="#">{{serie.name}}</a></h5>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="btn__all">
+                                            <a href="{% url 'serie:serie-add' %}" class="primary-btn">Agregar Serie<span class="arrow_right"></span></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            {% endfor %}
+                                <div class="row">
+        
+                                    <!-- Messages-->
+               
+                                    <!--DIVISION POR SERIE /PELICULA-->
+                                    {% if series %}
+                                    {% for serie in series %}
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="product__item">
+                                            <div class="product__item__pic set-bg" data-setbg="">
+                                                 <!-- Image -->
+                                                    {% if serie.image %}
+                                                         <div style="text-align: center;">
+                                                            <img height="250px" src="{{ serie.image.url }}">
+                                                        </div>
+                                                    {% endif %}
+        
+                                                <div class="ep">{{serie.chapter}}</div>
+                                                <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
+                                                <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
+                                            </div>
+                                            <div class="product__item__text">
+                                                <ul><!--Categorias-->
+                                                    <li>Serie</li>
+                                                    <!--<li>Movie</li>-->
+                                                </ul>
+                                                <h5><a href="#">{{serie.name}}</a></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    
+                                    {% endif %}
+                                    {% endblock %}
+
+
+
                             
-                            {% endif %}
-                            {% endblock %}
-    
+
+                            <!--DIVISION POR SERIE /PELICULA-->
                             <!-- 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
@@ -805,19 +793,15 @@
   <!-- Footer Section End -->
 
   <!-- Search model Begin -->
-  <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form" action="{% url 'serie:search' %}" method="GET">
-            <input type="text" name="search_param" id="serie_studio_or_name" placeholder="Buscar.."
-            {% if search_param %} value="{{ search_param }}" {% endif %}
-            >
-        </form>
-       
-               
-                
-            </div>
-        </form>
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form" action="{% url 'serie:search' %}" method="GET">
+                <input type="text" name="search_param" id="serie_studio_or_name" placeholder="Buscar.."
+                {% if search_param %} value="{{ search_param }}" {% endif %}
+                >
+            </form>
     </div>
 </div>
 <!-- Search model end -->

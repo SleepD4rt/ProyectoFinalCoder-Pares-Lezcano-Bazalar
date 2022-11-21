@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView
+from django.db.models import Q
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -78,6 +79,29 @@ class SerieUpdateView(UpdateView):
 class SerieDeleteView(DeleteView):
     model = Serie
     success_url = reverse_lazy("serie:serie-detail")
+    
+    
+    #Buscador
+def search(request):
+    search_param = request.GET["search_param"]
+    print("search: ", search_param)
+    context_dict = dict()
+    if search_param:
+        query = Q(name__contains=search_param)
+        query.add(Q(studio__contains=search_param), Q.OR)
+        series = Serie.objects.filter(query)
+        context_dict.update(
+            {
+                "series": series,
+                "search_param": search_param,
+            }
+        )
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="serie/serie_search.html",
+    )
+    
 
 """
 #LoginRequiredMixin
