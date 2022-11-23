@@ -50,6 +50,17 @@ class MovieForm(forms.ModelForm):
             }
         ),
     )
+    duration = forms.IntegerField(
+        label="Duracion",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "movie-duration",
+                "placeholder": "introduzca duracion",
+                "required": "True",
+            }
+        ),
+    )
     class Meta:
         model = Movie
-        fields = ["name", "release_date", "produced_by", "description"] 
+        fields = ["name", "release_date", "produced_by", "description", "duration"] 

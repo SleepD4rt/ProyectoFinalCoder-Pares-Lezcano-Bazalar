@@ -13,22 +13,23 @@ from movie.forms import MovieForm
 
 class MovieListView(ListView):
     model = Movie
-    paginate_by = 3
+    paginate_by = 12
+
 
 class MovieDetailView(DetailView):
     model = Movie
-    fields = ["name", "release_date", "produced_by", "description"]
+    fields = ["name", "release_date", "produced_by", "duration", "description"]
 
-    def get(self, request, pk):
-        movie = Movie.objects.get(id=pk)
+    #def get(self, request, pk):
+        #movie = Movie.objects.get(id=pk)
         #comments = Comment.objects.filter(movie=movie).order_by("-updated_at")
         #comment_form = CommentForm()
-        context = {
-            "movies": movie,
+        #context = {
+            #"movies": movie,
             #"comments": comments,
         #    "comment_form": comment_form,
-        }
-        return render(request, self.template_name, context)
+        #}
+        #return render(request, self.template_name, context)
 #LoginRequiredMixin
 class MovieCreateView(CreateView):
     model = Movie
@@ -43,7 +44,8 @@ class MovieCreateView(CreateView):
             name=data["name"],
             release_date=data["release_date"],
             produced_by=data["produced_by"],
-        ).count()
+            duration=data["duration"],
+                    ).count()
         if actual_objects:
             messages.error(
                 self.request,
@@ -61,7 +63,7 @@ class MovieCreateView(CreateView):
 #LoginRequiredMixin
 class MovieUpdateView(UpdateView):
     model = Movie
-    fields = ["name", "release_date", "produced_by", "description"]
+    fields = ["name", "release_date", "produced_by", "duration", "description"]
 
     def get_success_url(self):
         movie_id = self.kwargs["pk"]

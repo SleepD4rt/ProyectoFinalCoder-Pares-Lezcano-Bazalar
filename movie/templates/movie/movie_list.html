@@ -37,7 +37,7 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
+    {% block head %}
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -86,7 +86,7 @@
         </div>
     </header>
     <!-- Header End -->
-
+    {% endblock %}
     <!-- Hero Section Begin 
     <section class="hero">
         <div class="container">
@@ -367,7 +367,7 @@
 
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
-                    {% block content %}
+                {% block content %}
                     <div class="recent__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
@@ -381,42 +381,38 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <!--DIVISION POR SERIE /PELICULA-->
-                            
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-1.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">
-                                            {% for movie in movie %}
-                                            <!-- Post preview-->
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="post-preview">
-
-                                                            <h2 class="post-title">{{ movie.name }} {{ movie.produded_by }}</h2>
-                                                            <h3 class="post-subtitle">Se estreno  {{ movie.release_date }}</h3>                                                   
-                                                    </div>        
-                                                    <!-- Divider-->
-                                                    <hr class="my-4" />
-                                                {% endfor %}
-                                                </div>
-                                            </div>    
-                                        </a></h5>
-                                    </div>
+                        <!--DIVISION POR SERIE /PELICULA-->
+                        {% if movie_list %}
+                        {% for movie in movie_list %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="">
+                                     <!-- Image -->
+                                        {% if serie.image %}
+                                             <div style="text-align: center;">
+                                                <img height="250px" src="{{ serie.image.url }}">
+                                            </div>
+                                        {% endif %}
+                                    <p><span class="icon_calendar"></span> {{ movie.release_date }}</p>
+                                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                    <div class="duration"><i class="fa fa-clock-o"></i>{{ movie.duration }}M</div>
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <!--<li>Active</li>
+                                        <li>Movie</li>-->
+                                    </ul>                                   
+                                    <h5><a href="{% url 'movie:movie-detail' movie.id %}">{{ movie.name }}</a></h5>
                                 </div>
                             </div>
-                            {% endblock %}
-
+                        </div>
+                    </div>
+                </div>
+                        {% endfor %}
+                        {% endif %}
+                {% endblock %}
                             <!--DIVISION POR SERIE /PELICULA-->
                             <!-- 
                             <div class="col-lg-4 col-md-6 col-sm-6">

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
-    'compressor',
+    #'compresor',
     'home',
     'movie',
     'serie',
@@ -138,7 +138,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/') 
-STATICFILES_FINDERS =( 'django.contrib.staticfiles.finders.FileSystemFinder',  'django.contrib.staticfiles.finders.AppDirectoriesFinder',    'compressor.finders.CompressorFinder',
+STATICFILES_FINDERS =( 'django.contrib.staticfiles.finders.FileSystemFinder',  'django.contrib.staticfiles.finders.AppDirectoriesFinder',    #'compressor.finders.CompressorFinder',
 ) 
 COMPRESS_PRECOMPILERS = (    
     ('text/x-scss', 'django_libsass.SassCompiler'),
