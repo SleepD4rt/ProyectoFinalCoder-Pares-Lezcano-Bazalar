@@ -13,7 +13,7 @@ from movie.forms import MovieForm
 
 class MovieListView(ListView):
     model = Movie
-    paginate_by = 12
+    paginate_by = 2
 
 
 class MovieDetailView(DetailView):
