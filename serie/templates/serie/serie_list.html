@@ -6,11 +6,13 @@
 {% endblock %}
 
 {% block buscador %}
-<a href="" class="search-switch"><span class="icon_search"></span></a>
+<a href="#" class="search-switch"><span class="icon_search"></span></a>
 {% endblock %}
 
 {% block content %}
                     
+    <!-- Page Preloder -->
+   
 <!--Listado de series-->
                     <div class="recent__product">
                         <div class="row">
@@ -61,9 +63,10 @@
                                         <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
                                     </div>
                                     <div class="product__item__text">
-                                        <ul><!--Categorias-->
+                                        <ul>
+                                            
                                             <li>Serie</li>
-                                            <!--<li>Movie</li>-->
+                                            
                                         </ul>
                                         <h5><a href="#">{{serie.name}}</a></h5>
                                     </div>
@@ -80,7 +83,7 @@
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
             <form class="search-model-form" action="{% url 'serie:search' %}" method="GET">
-                <input type="text" name="search_param" id="serie_studio_or_name" placeholder="Buscar.."
+                <input type="text" name="search_param" id="serie_or_name" placeholder="Buscar.."
                 {% if search_param %} value="{{ search_param }}" {% endif %}
                 >
             </form>
