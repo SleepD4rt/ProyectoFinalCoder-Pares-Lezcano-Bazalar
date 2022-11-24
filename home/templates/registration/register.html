@@ -1,9 +1,8 @@
 {% extends "home/index.html" %}
 {% load static %} 
 
-
 {% block title %}
-<title>Ingreso</title>
+<title>Registro</title>
 {% endblock %}
 
 
@@ -25,23 +24,20 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="login__form">
-                    <h3>Login</h3>
+                    <h3>Registro de usuario</h3>
                     <form action="#">
-
                         <form action="" class="input__item" method="POST">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <input type="submit" class="site-btn" value="Iniciar Sesión" />
+                            <input type="submit" class="site-btn" value="Crear Usuario" />
                         </form>
                     </form>
-
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="login__register">
-
-                    <h3>No tienes cuenta?</h3>
-                    <a href="{% url 'home:user-register' %}" class="primary-btn">Registrate Ahora!</a>
+                    <h3>Tienes cuenta?</h3>
+                    <a href="{% url 'login'  %}" class="primary-btn">Ingresa!</a>
                 </div>
             </div>
         </div>

@@ -61,6 +61,8 @@ class SerieForm(forms.ModelForm):
         ),
     )
 
+    imagen = forms.ImageField()
+
     director = forms.CharField(
         label="Nombre y apellido del director",
         max_length=40,
@@ -93,6 +95,8 @@ class SerieForm(forms.ModelForm):
         ),
     )
 
+
+
     release_date = forms.DateField(
         label="Fecha de estreno:",
         required=False,
@@ -107,7 +111,7 @@ class SerieForm(forms.ModelForm):
 
     class Meta:
         model = Serie
-        fields = ["name", "descript", "chapter", "season", "rating", "director", "actor", "studio", "release_date"]
+        fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
 
 
 """

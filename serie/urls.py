@@ -4,6 +4,7 @@ from serie import views
 
 app_name = "serie"
 urlpatterns = [
+    path("search/", views.search, name="search"),
     path("series/", views.serieListView.as_view(), name="serie-list"),
     path("serie/add/", views.SerieCreateView.as_view(), name="serie-add"),
     path("serie/<int:pk>/detail/", views.SerieDetailView.as_view(), name="serie-detail"),

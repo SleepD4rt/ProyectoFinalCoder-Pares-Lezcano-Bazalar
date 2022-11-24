@@ -32,6 +32,7 @@ class MovieDetailView(DetailView):
         #return render(request, self.template_name, context)
 #LoginRequiredMixin
 class MovieCreateView(CreateView):
+    
     model = Movie
     success_url = reverse_lazy("movie:movie-list")
 

@@ -6,8 +6,9 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-#from course.models import Course
-#from home.models import Avatar
+from serie.models import Serie
+from home.forms import UserRegisterForm
+from home.forms import UserUpdateForm
 
 
 def index(request):
@@ -23,31 +24,7 @@ def get_avatar_url_ctx(request):
     if avatars.exists():
         return {"avatar_url": avatars[0].image.url}
     return {}
-
-
-
-
-
-def search(request):
-    search_param = request.GET["search_param"]
-    print("search: ", search_param)
-    context_dict = dict()
-    if search_param:
-        query = Q(name__contains=search_param)
-        query.add(Q(code__contains=search_param), Q.OR)
-        courses = Course.objects.filter(query)
-        context_dict.update(
-            {
-                "courses": courses,
-                "search_param": search_param,
-            }
-        )
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="home/index.html",
-    )
-
+"""
 
 def register(request):
     form = UserRegisterForm(request.POST) if request.POST else UserRegisterForm()
@@ -63,7 +40,7 @@ def register(request):
         template_name="registration/register.html",
     )
 
-
+"""
 @login_required
 def user_update(request):
     user = request.user
