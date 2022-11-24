@@ -1,5 +1,5 @@
 from django.contrib import messages
-#from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
@@ -10,7 +10,6 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 #from serie.forms import CommentForm
 from serie.forms import SerieForm
-#from serie.forms import HomeworkForm
 #from serie.models import Comment
 from serie.models import Serie
 
@@ -23,7 +22,7 @@ class serieListView(ListView):
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
 
     def get(self, request, pk):
         serie = Serie.objects.get(id=pk)
@@ -69,7 +68,7 @@ class SerieCreateView(CreateView):
 #LoginRequiredMixin
 class SerieUpdateView(UpdateView):
     model = Serie
-    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]
@@ -88,7 +87,6 @@ def search(request):
     context_dict = dict()
     if search_param:
         query = Q(name__contains=search_param)
-        query.add(Q(studio__contains=search_param), Q.OR)
         series = Serie.objects.filter(query)
         context_dict.update(
             {
