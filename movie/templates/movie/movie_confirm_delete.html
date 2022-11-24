@@ -1,0 +1,23 @@
+{% extends "home/index.html" %}
+{% extends "movie/movie_list.html"}
+{% load static %} 
+
+{% block titulo %}
+
+{% endblock %}
+
+{% block delete %}
+<style>
+    h1 { color: white;
+        
+    }
+</style>
+<h1>Estás seguro de eliminar el Curso: {{ course.name }}?</h1> 
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
+    <a class="btn btn-primary" href="{% url 'movie:movie-list' %}" >Cancelar</a>
+</form>
+
+{% endblock %}

@@ -37,7 +37,7 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
+    {% block header %}
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -54,21 +54,10 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li><a href="{% url 'home:index' %}">Inicio</a></li>
-                                <li><a href="{% url 'serie:serie-list' %}">Serie</a></li>
-                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a></li>
-                                <li><a href="./categories.html">Directores</a></li>
-                                    <!-- CATEGORIAS, VEMOS SI LO PONEMOS
-                                    <ul class="dropdown">
-                                        <li><a href="./categories.html">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
-                                    </ul>
-                                    -->
-                                
 
+                                <li><a href="{% url 'serie:serie-list' %}">Series</a></li>
+                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a></li>
+                                <li><a href="./categories.html">Directores</a>
                                 <li class="active"><a href="./blog.html">Acerca de</a></li>
                             </ul>
                         </nav>
@@ -85,7 +74,7 @@
         </div>
     </header>
     <!-- Header End -->
-
+    {% endblock %}
     <!-- Hero Section Begin 
     <section class="hero">
         <div class="container">
@@ -366,7 +355,7 @@
 
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
-                    {% block content %}
+                {% block content %}
                     <div class="recent__product">
                         {% if messages %}
                         {% for message in messages %}
@@ -389,42 +378,77 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <!--DIVISION POR SERIE /PELICULA-->
-                            
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-1.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">
-                                            
-                                            <!-- Post preview-->
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="post-preview">
 
-                                                            <h2 class="post-title">fulanito</h2>
-                                                            <h3 class="post-subtitle">Se estreno  2000-64-23</h3>                                                   
-                                                    </div>        
-                                                    <!-- Divider-->
-                                                    <hr class="my-4" />
+                        <!--DIVISION POR SERIE /PELICULA-->
+                        {% if movie_list %}
+                        {% for movie in movie_list %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="">
+                                     <!-- Image -->
+                                        {% if serie.image %}
+                                             <div style="text-align: center;">
+                                                <img height="250px" src="{{ serie.image.url }}">
+                                            </div>
+                                        {% endif %}
+                                        <style>
+                                            p, div {
+                                                color: white;
+                                            }
+                                        </style>
+                                    <p><span class="icon_calendar"></span> {{ movie.release_date }}</p>
+                                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                    <div class="duration"><i class="fa fa-clock-o"></i>{{ movie.duration }}M</div>
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <!--<li>Active</li>
+                                        <li>Movie</li>-->
+                                    </ul>                                   
+                                    <h5><a href="{% url 'movie:movie-detail' movie.id %}">{{ movie.name }}</a></h5>
 
-                                                </div>
-                                            </div>    
-                                        </a></h5>
-                                    </div>
                                 </div>
                             </div>
-                            {% endblock %}
-
+                        </div>
+                    </div>
+                </div>
+                        {% endfor %}
+                        {% endif %}
+                {% endblock %}
+                {% block pagination %}
+                <!--Pagination Class Based Views-->
+                {% if is_paginated %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <span class="step-links">
+                            <style>
+                                a, span {
+                                    color: white;
+                                }
+                            </style>
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a> |
+                                <a href="?page={{ course_list.previous_page_number }}">previous</a> |
+                            {% endif %}
+                
+                            {% if page_obj.paginator.num_pages > 1 %}
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                            </span>
+                            {% endif %}
+                
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
+                <!--end of Pagination-->
+            {% endblock %}
                             <!--DIVISION POR SERIE /PELICULA-->
                             <!-- 
                             <div class="col-lg-4 col-md-6 col-sm-6">
@@ -756,7 +780,7 @@
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="./index.html">Homepage</a></li>
+                        <li class="active"><a href="{% url 'home:index' %}">Homepage</a></li>
                         <li><a href="./categories.html">Categories</a></li>
                         <li><a href="./blog.html">Our Blog</a></li>
                         <li><a href="#">Contacts</a></li>

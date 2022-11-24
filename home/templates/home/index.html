@@ -2,12 +2,15 @@
 <html lang="zxx">
 
 <head>
+
     {% load static %}
+
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     {% block title %}
     <title>Inicio</title>
     {% endblock %}
@@ -27,14 +30,12 @@
     <link rel="stylesheet" href="{% static 'home/css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'home/css/style.css' %}" type="text/css">
 </head>
-
 <body>
 
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -48,14 +49,13 @@
                             <ul>
                                 <li><a href="{% url 'home:index' %}">Inicio</a></li>
 
+
                                 <li><a href="{% url 'serie:serie-list' %}">Series</a>
 
 
                                 <li><a href="{% url 'movie:movie-list' %}">Peliculas</a>
 
                                 <li><a href="./categories.html">Directores</a></li>
-
-
 
                                 <li class="active"><a href="./blog.html">Acerca de</a></li>
 
@@ -64,16 +64,12 @@
                     </div>
                 </div>
 
+
                     <div class="col-lg-2">
                         <div class="header__right">
                             {% block buscador %}
                             
                             {% endblock %}
-
-
-
-
-
 
                             <a href="{% url 'login' %}"><span class="icon_profile"></span></a>
 
@@ -85,7 +81,9 @@
         </div>
     </header>
     <!-- Header End -->
+
     {% block content %}
+
     <!-- Blog Details Section Begin -->
     <section class="blog-details spad">
         <div class="container">
@@ -98,10 +96,9 @@
                     </div>
                 </div>
     {% endblock %}
-
-
                
 {% block hab_buscador%}
+
 
 {% endblock %}
 <!-- Js Plugins -->
