@@ -61,7 +61,7 @@ class SerieForm(forms.ModelForm):
         ),
     )
 
-    image = forms.ImageField()
+    imagen = forms.ImageField()
 
     director = forms.CharField(
         label="Nombre y apellido del director",
@@ -111,7 +111,7 @@ class SerieForm(forms.ModelForm):
 
     class Meta:
         model = Serie
-        fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+        fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
 
 
 """
