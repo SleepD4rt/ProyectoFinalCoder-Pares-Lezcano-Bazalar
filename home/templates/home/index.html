@@ -45,8 +45,13 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li><a href="{% url 'home:index' %}">Inicio</a></li>
+
                                 <li><a href="{% url 'serie:serie-list' %}">Series</a>
+                                <li><a href="./categories.html">Peliculas</a>
+
+
                                 <li><a href="{% url 'movie:movie-list' %}">Peliculas</a>
+
                                 <li><a href="./categories.html">Directores</a>
                                     
                                 </li>
@@ -58,8 +63,15 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
+<<<<<<< HEAD
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
                         <a href="{% url 'login'  %}"><span class="icon_profile"></span></a>
+=======
+                        <a href="./login.html"><span class="icon_profile"></span></a>
+
+
+                        
+>>>>>>> dafbbe7f3b426378ac260b693c8863e4166b85f2
                     </div>
                 </div>
             </div>
