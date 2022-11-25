@@ -53,7 +53,7 @@
                                 <li><a href="{% url 'serie:serie-list' %}">Series</a>
 
 
-                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a>
+                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a></li>
 
                                 <li><a href="./categories.html">Directores</a></li>
 
@@ -96,7 +96,8 @@
                     </div>
                 </div>
     {% endblock %}
-               
+    {% block detail %}
+    {% endblock %}
 {% block hab_buscador%}
 
 

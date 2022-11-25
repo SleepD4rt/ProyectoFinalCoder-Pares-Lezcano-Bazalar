@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Anime Template">
+    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block web_title %}
+            Inicio
+        {% endblock %}
+    </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/plyr.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    {% block header %}
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="header__logo">
+                        <a href="./index.html">
+                            <img src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="header__nav">
+                        <nav class="header__menu mobile-menu">
+                            <ul>
+                                <li><a href="{% url 'home:index' %}">Inicio</a></li>
+
+                                <li><a href="{% url 'serie:serie-list' %}">Series</a></li>
+                                <li><a href="{% url 'movie:movie-list' %}">Peliculas</a></li>
+                                <li><a href="./categories.html">Directores</a>
+                                <li class="active"><a href="./blog.html">Acerca de</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="header__right">
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a href="./login.html"><span class="icon_profile"></span></a>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </header>
+    <!-- Header End -->
+    {% endblock %}
+
+
+                    <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
+                {% block content %}
+                    <div class="recent__product">
+                        {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                    {% endif %}
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>Recently Added Shows</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="btn__all">
+                                    <a href="{% url 'movie:movie-add' %}" class="primary-btn">Agregar pelicula<span class="arrow_right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--DIVISION POR SERIE /PELICULA-->
+                        {% if movie_list %}
+                        {% for movie in movie_list %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="">
+                                     <!-- Image -->
+                                        {% if serie.image %}
+                                             <div style="text-align: center;">
+                                                <img height="250px" src="{{ serie.image.url }}">
+                                            </div>
+                                        {% endif %}
+                                        <style>
+                                            p, div {
+                                                color: white;
+                                            }
+                                        </style>
+                                    <p><span class="icon_calendar"></span> {{ movie.release_date }}</p>
+                                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                    <div class="duration"><i class="fa fa-clock-o"></i>{{ movie.duration }}M</div>
+                                </div>
+                                <div class="product__item__text">
+                                    <ul>
+                                        <!--<li>Active</li>
+                                        <li>Movie</li>-->
+                                    </ul>                                   
+                                    <h5><a href="{% url 'movie:movie-detail' movie.id %}">{{ movie.name }}</a></h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        {% endfor %}
+                        {% endif %}
+                {% endblock %}
+                {% block pagination %}
+                <!--Pagination Class Based Views-->
+                {% if is_paginated %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <span class="step-links">
+                            <style>
+                                a, span {
+                                    color: white;
+                                }
+                            </style>
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a> |
+                                <a href="?page={{ course_list.previous_page_number }}">previous</a> |
+                            {% endif %}
+                
+                            {% if page_obj.paginator.num_pages > 1 %}
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                            </span>
+                            {% endif %}
+                
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
+                <!--end of Pagination-->
+            {% endblock %}
+                            
+                    
+                    
+</section>
+<!-- Product Section End -->
+
+
+  <!-- Search model Begin -->
+  <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch"><i class="icon_close"></i></div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
+</div>
+<!-- Search model end -->
+
+<!-- Js Plugins -->
+<script src="{% static 'home/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/js/player.js' %}"></script>
+<script src="{% static 'home/js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'home/js/mixitup.min.js' %}"></script>
+<script src="{% static 'home/js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'home/js/main.js' %}"></script>
+
+
+</body>
+
+</html>

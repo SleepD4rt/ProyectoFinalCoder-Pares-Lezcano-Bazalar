@@ -21,18 +21,18 @@ class MovieForm(forms.ModelForm):
         required=False,
         widget=forms.TextInput(
             attrs={
-                "class": "movie-name",
+                "class": "movie-release_date",
                 "placeholder": "introduzca fecha",
                 "required": "True",
             }
         ),
     )
-    produced_by = forms.CharField(
+    director = forms.CharField(
         label="Dirigida por",
         required=False,
         widget=forms.TextInput(
             attrs={
-                "class": "movie-produced_by",
+                "class": "movie-director",
                 "placeholder": "introduzca nombre",
                 "required": "True",
             }
@@ -50,6 +50,21 @@ class MovieForm(forms.ModelForm):
             }
         ),
     )
+    
+    image = forms.ImageField()
+    
+    studio = forms.CharField(
+        label="Estudio:",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "movie-studio",
+                "placeholder": "introduzca nombre",
+                "required": "True",
+            }
+        ),
+    )
+    
     duration = forms.IntegerField(
         label="Duracion",
         required=False,
@@ -61,6 +76,18 @@ class MovieForm(forms.ModelForm):
             }
         ),
     )
+    rating = forms.FloatField(
+        label="Rating:",
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "serie-rating",
+                "placeholder": "Rating expresado del 0.0 a 10.0",
+                "required": "True",
+            }
+        ),
+    )
+    
     class Meta:
         model = Movie
-        fields = ["name", "release_date", "produced_by", "description", "duration"] 
+        fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 

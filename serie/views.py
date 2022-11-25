@@ -22,7 +22,7 @@ class serieListView(ListView):
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get(self, request, pk):
         serie = Serie.objects.get(id=pk)
@@ -68,7 +68,7 @@ class SerieCreateView(CreateView):
 #LoginRequiredMixin
 class SerieUpdateView(UpdateView):
     model = Serie
-    fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]

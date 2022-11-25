@@ -1,9 +1,10 @@
 from django.contrib import messages
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView
+from django.db.models import Q
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -18,18 +19,20 @@ class MovieListView(ListView):
 
 class MovieDetailView(DetailView):
     model = Movie
-    fields = ["name", "release_date", "produced_by", "duration", "description"]
+    template_name = "movie/movie_detail.html"
+    fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
 
-    #def get(self, request, pk):
-        #movie = Movie.objects.get(id=pk)
+    def get(self, request, pk):
+        movie = Movie.objects.get(id=pk)
         #comments = Comment.objects.filter(movie=movie).order_by("-updated_at")
         #comment_form = CommentForm()
-        #context = {
-            #"movies": movie,
+        context = {
+            "movies": movie,
             #"comments": comments,
         #    "comment_form": comment_form,
-        #}
-        #return render(request, self.template_name, context)
+        }
+        return render(request, self.template_name, context)
+    
 #LoginRequiredMixin
 class MovieCreateView(CreateView):
     
@@ -43,28 +46,26 @@ class MovieCreateView(CreateView):
         data = form.cleaned_data
         actual_objects = Movie.objects.filter(
             name=data["name"],
-            release_date=data["release_date"],
-            produced_by=data["produced_by"],
-            duration=data["duration"],
+            studio=data["studio"],
                     ).count()
         if actual_objects:
             messages.error(
                 self.request,
-                f"La Pelicula {data['name']} {data['release_date']} | {data['produced_by']} ya está creado",
+                f"La Pelicula {data['name']} de {data['studio']} ya está creado",
             )
             form.add_error("name", ValidationError("Acción no válida"))
             return super().form_invalid(form)
         else:
             messages.success(
                 self.request,
-                f"La pelicula {data['name']} - {data['release_date']} | {data['produced_by']}. Creado exitosamente!",
+                f"La pelicula {data['name']} de {data['studio']}. Creado exitosamente!",
             )
             return super().form_valid(form)
 
 #LoginRequiredMixin
 class MovieUpdateView(UpdateView):
     model = Movie
-    fields = ["name", "release_date", "produced_by", "duration", "description"]
+    fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
 
     def get_success_url(self):
         movie_id = self.kwargs["pk"]
@@ -74,3 +75,23 @@ class MovieUpdateView(UpdateView):
 class MovieDeleteView(DeleteView):
     model = Movie
     success_url = reverse_lazy("movie:movie-list")
+
+#Buscador
+def search(request):
+    search_param = request.GET["search_param"]
+    print("search: ", search_param)
+    context_dict = dict()
+    if search_param:
+        query = Q(name__contains=search_param)
+        movies = Movie.objects.filter(query)
+        context_dict.update(
+            {
+                "movies": movies,
+                "search_param": search_param,
+            }
+        )
+    return render(
+        request=request,
+        context=context_dict,
+        template_name="movie/movie_search.html",
+    )
