@@ -22,7 +22,7 @@ class serieListView(ListView):
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
 
 #LoginRequiredMixin
@@ -58,7 +58,7 @@ class SerieCreateView(CreateView):
 #LoginRequiredMixin
 class SerieUpdateView(UpdateView):
     model = Serie
-    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]
@@ -67,7 +67,7 @@ class SerieUpdateView(UpdateView):
 #LoginRequiredMixin
 class SerieDeleteView(DeleteView):
     model = Serie
-    success_url = reverse_lazy("serie:serie-detail")
+    success_url = reverse_lazy("serie:serie-list")
     
     
     #Buscador

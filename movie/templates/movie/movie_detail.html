@@ -63,6 +63,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <p class="card-text ">{{ movie.description|safe }}</p>
+                            <p style="text-align: center">
+                                <a href="{% url 'movie:movie-update' movie.id %}">
+                                    <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
+                                </a>
+                                &ensp; | &ensp;
+                                <a href="{% url 'movie:movie-delete' movie.id %}">
+                                    <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
                     <!--PREPARAR AMBOS TEMPLATES-->
                             
                         </div>
