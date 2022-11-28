@@ -1,4 +1,4 @@
-{% extends "movie/movie_list.html" %}
+{% extends "serie/serie_list.html" %}
 {% load static %} 
 
 
@@ -10,8 +10,8 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="{% url 'home:index' %}"><i class="fa fa-home"></i> Inicio</a>
-                        <a href="{% url 'movie:movie-list' %}"> Peliculas</a>
-                        <span> {{ movie.name }}</span>
+                        <a href="{% url 'serie:serie-list' %}"> Series</a>
+                        <span> {{ serie.name }}</span>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                             <!-- Image -->
                                
                                     <div style="text-align: center;">
-                                       <img height="250px" src="{{ movie.image.url }}">
+                                       <img height="250px" src="{{ serie.image.url }}">
                                    </div>
                             <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         </div>
@@ -37,7 +37,7 @@
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
-                                <h3>{{ movie.name }}</h3>
+                                <h3>{{ serie.name }}</h3>
                                 <!-- <span> </span> -->
                             </div>
                             <div class="anime__details__rating">
@@ -49,16 +49,18 @@
                                     <a href="#"><i class="fa fa-star-half-o"></i></a>-->
                                 </div>
                             </div>
-                            <p class="card-text ">{{ movie.description|safe }}</p> <!-- ckeditor-->
+                            <p class="card-text ">{{ serie.descript|safe }}</p> <!-- ckeditor-->
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Tipo:</span>Movie </li>
-                                            <li><span>Estreno:</span>{{movie.release_date}}</li>
-                                            <li><span>Director:</span>{{movie.director}}</li>
-                                            <li><span>Estudio:</span>{{movie.studio}}</li>
-                                            <li><span>Duracion:</span>{{movie.duration}}M</li>
+                                            <li><span>Tipo:</span> Serie </li>
+                                            <li><span>Estreno:</span>{{serie.release_date}}</li>
+                                            <li><span>Director:</span>{{serie.director}}</li>
+                                            <li><span>Estudio:</span>{{serie.studio}}</li>
+                                            <li><span>Actores:</span>{{serie.actor|safe}}</li>
+                                            <li><span>Temporadas:</span>{{serie.season}}</li>
+                                            <li><span>Capitulos:</span>{{serie.chapter}}</li>
                                         </ul>
                                     </div>
                                 </div>

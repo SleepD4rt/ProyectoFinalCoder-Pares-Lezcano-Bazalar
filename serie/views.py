@@ -22,18 +22,8 @@ class serieListView(ListView):
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
-    def get(self, request, pk):
-        serie = Serie.objects.get(id=pk)
-        #comments = Comment.objects.filter(serie=serie).order_by("-updated_at")
-        #comment_form = CommentForm()
-        context = {
-            "series": serie,
-            #"comments": comments,
-        #    "comment_form": comment_form,
-        }
-        return render(request, self.template_name, context)
 
 #LoginRequiredMixin
 class SerieCreateView(CreateView):
@@ -68,7 +58,7 @@ class SerieCreateView(CreateView):
 #LoginRequiredMixin
 class SerieUpdateView(UpdateView):
     model = Serie
-    fields = ["name", "description", "chapter", "season", "rating", "imagen", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]

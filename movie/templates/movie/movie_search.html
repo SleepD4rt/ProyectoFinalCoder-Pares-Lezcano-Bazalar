@@ -1,5 +1,4 @@
-
-{% extends "serie/serie_list.html" %}
+{% extends "movie/movie_list.html" %}
 {% load static %} 
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
@@ -11,12 +10,12 @@
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm-8">
                                         <div class="section-title">
-                                            <h4>SERIES</h4>
+                                            <h4>PELICULAS</h4>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4">
                                         <div class="btn__all">
-                                            <a href="{% url 'serie:serie-add' %}" class="primary-btn">Agregar Serie<span class="arrow_right"></span></a>
+                                            <a href="{% url 'movie:movie-add' %}" class="primary-btn">Agregar pelicula<span class="arrow_right"></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -25,28 +24,28 @@
                                     <!-- Messages-->
                
                                     <!--DIVISION POR SERIE /PELICULA-->
-                                    {% if series %}
-                                    {% for serie in series %}
+                                    {% if movies %}
+                                    {% for movie in movies %}
                                     <div class="col-lg-4 col-md-6 col-sm-6">
                                         <div class="product__item">
                                             <div class="product__item__pic set-bg" data-setbg="">
                                                  <!-- Image -->
-                                                    {% if serie.image %}
+                                                    {% if movie.image %}
                                                          <div style="text-align: center;">
-                                                            <img height="250px" src="{{ serie.image.url }}">
+                                                            <img height="250px" src="{{ movie.image.url }}">
                                                         </div>
                                                     {% endif %}
         
-                                                <div class="ep">{{serie.chapter}}</div>
+                                                <div class="ep">{{movie.chapter}}</div>
                                                 <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
-                                                <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
+                                                <div class="view"><i class="fa fa-eye"></i> Rating: {{movie.rating}}</div>
                                             </div>
                                             <div class="product__item__text">
                                                 <ul><!--Categorias-->
-                                                    <li>Serie</li>
+                                                    <li>Pelicula</li>
                                                     <!--<li>Movie</li>-->
                                                 </ul>
-                                                <h5><a href="#">{{serie.name}}</a></h5>
+                                                <h5><a href="#">{{movie.name}}</a></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -54,17 +53,19 @@
                                     
                                     {% endif %}
                                     {% endblock %}
+
+  <!-- Footer Section End -->
+
+  <!-- Search model Begin -->
 {% block hab_buscador%}
-    <!-- Search model Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form" action="{% url 'serie:search' %}" method="GET">
-                <input type="text" name="search_param" id="serie_studio_or_name" placeholder="Buscar.."
+            <form class="search-model-form" action="{% url 'movie:search' %}" method="GET">
+                <input type="text" name="search_param" id="movie_or_name" placeholder="Buscar.."
                 {% if search_param %} value="{{ search_param }}" {% endif %}
                 >
             </form>
     </div>
 </div>
-<!-- Search model end -->
 {% endblock %}
