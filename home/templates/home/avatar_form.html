@@ -25,7 +25,7 @@
         <div class="login__form">
             <h3>Usuario: {{user.username}}</h3>
             <h3>Cargar Avatar</h3>
-                <form action="" class="input__item" method="POST">
+                <form action="" class="input__item" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit" class="site-btn" value="Cargar Avatar"/>
