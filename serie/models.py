@@ -6,7 +6,7 @@ from ckeditor.fields import RichTextField
 
 class Serie(models.Model):
     name = models.CharField(max_length=40, null=False, blank=False)
-    descript = RichTextField(null=True, blank=True)
+    description = RichTextField(null=True, blank=True)
     chapter = models.IntegerField(null=False, blank=False)
     season = models.IntegerField(null=False, blank=False)
     rating = models.FloatField(null=False, blank=False)

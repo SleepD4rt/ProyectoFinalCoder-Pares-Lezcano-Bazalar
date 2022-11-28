@@ -7,6 +7,7 @@ from django.views.generic import ListView
 from django.db.models import Q
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.admin.views.decorators import staff_member_required
 
 from movie.models import Movie
 from movie.forms import MovieForm
@@ -23,8 +24,9 @@ class MovieDetailView(DetailView):
     fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
 
 
-#LoginRequiredMixin
-class MovieCreateView(CreateView):
+#
+
+class MovieCreateView(LoginRequiredMixin, CreateView):
     
     model = Movie
     success_url = reverse_lazy("movie:movie-list")
@@ -53,7 +55,8 @@ class MovieCreateView(CreateView):
             return super().form_valid(form)
 
 #LoginRequiredMixin
-class MovieUpdateView(UpdateView):
+
+class MovieUpdateView(LoginRequiredMixin, UpdateView):
     model = Movie
     fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
 
@@ -62,7 +65,8 @@ class MovieUpdateView(UpdateView):
         return reverse_lazy("movie:movie-detail", kwargs={"pk": movie_id})
 
 #LoginRequiredMixin
-class MovieDeleteView(DeleteView):
+
+class MovieDeleteView(LoginRequiredMixin, DeleteView):
     model = Movie
     success_url = reverse_lazy("movie:movie-list")
 

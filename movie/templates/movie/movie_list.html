@@ -9,7 +9,8 @@
 {% block buscador %}
 <a href="#" class="search-switch"><span class="icon_search"></span></a>
 {% endblock %}
-
+{%block load_avatar_auth%}
+{% endblock %}
 
 {% block content %}
                     
@@ -26,9 +27,11 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
+                            {% if request.user.is_staff %}
                                 <div class="btn__all">
                                     <a href="{% url 'movie:movie-add' %}" class="primary-btn">Agregar pelicula<span class="arrow_right"></span></a>
                                 </div>
+                            {% endif %}
                             </div>
                         </div>
                         <div class="row">
