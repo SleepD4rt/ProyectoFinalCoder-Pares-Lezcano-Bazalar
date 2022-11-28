@@ -1,12 +1,8 @@
-{% extends "home/index.html" %}
+{% extends "movie/movie_list.html" %}
 {% load static %} 
 
-{% block title %}
-Pelicula
-{% endblock %}
 
-
-{% block detail %}
+{% block content %}
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
@@ -29,7 +25,12 @@ Pelicula
             <div class="anime__details__content">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="img/anime/details-pic.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="">
+                            <!-- Image -->
+                               
+                                    <div style="text-align: center;">
+                                       <img height="250px" src="{{ movie.image.url }}">
+                                   </div>
                             <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         </div>
                     </div>
@@ -48,50 +49,26 @@ Pelicula
                                     <a href="#"><i class="fa fa-star-half-o"></i></a>-->
                                 </div>
                             </div>
-                               <p> {{ movie.description }}</p> 
+                            <p class="card-text ">{{ movie.description|safe }}</p> <!-- ckeditor-->
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Tipo:</span> Movie </li>
-                                            <li><span>Genero:</span> </li>
-                                            <li><span>Estreno:</span> {{movie.release_date }}</li>
-                                            <li><span>Director</span> {{ movie.produced_by }}</li>
-                                            <li><span>Duracion</span> {{ movie.duration }}M</li>
+                                            <li><span>Tipo:</span>Movie </li>
+                                            <li><span>Estreno:</span>{{movie.release_date}}</li>
+                                            <li><span>Director:</span>{{movie.director}}</li>
+                                            <li><span>Estudio:</span>{{movie.studio}}</li>
+                                            <li><span>Duracion:</span>{{movie.duration}}M</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                    
-                            <p style="text-align: center">
-                                <a href="{% url 'movie:movie-update' movie.id %}">
-                                    <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
-                                </a>
-                                &ensp; | &ensp;
-                                <a href="{% url 'movie:movie-delete' movie.id %}">
-                                    <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
-                                </a>    
-                            </p>
+                    <!--PREPARAR AMBOS TEMPLATES-->
+                            
                         </div>
                          
 
-                                    <!--<div class="col-lg-6 col-md-6">
-                                        <ul>
-                                            <li><span>Scores:</span> 7.31 / 1,515</li>
-                                            <li><span>Rating:</span> 8.5 / 161 times</li>
-                                            <li><span>Duration:</span> 24 min/ep</li>
-                                            <li><span>Quality:</span> HD</li>
-                                            <li><span>Views:</span> 131,541</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
-                                    class="fa fa-angle-right"></i></a>
-                                </div>
-                            </div>-->
+                                    
                         </div>
                     </div>
                 </div>
@@ -111,12 +88,5 @@ Pelicula
         </section>
         <!-- Anime Section End -->
 
-
-
-        <!-- Search model end -->
-
-    </body>
-
-    </html>
 {% endblock %}
 

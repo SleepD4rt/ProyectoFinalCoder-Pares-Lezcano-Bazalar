@@ -22,17 +22,7 @@ class MovieDetailView(DetailView):
     template_name = "movie/movie_detail.html"
     fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
 
-    def get(self, request, pk):
-        movie = Movie.objects.get(id=pk)
-        #comments = Comment.objects.filter(movie=movie).order_by("-updated_at")
-        #comment_form = CommentForm()
-        context = {
-            "movies": movie,
-            #"comments": comments,
-        #    "comment_form": comment_form,
-        }
-        return render(request, self.template_name, context)
-    
+
 #LoginRequiredMixin
 class MovieCreateView(CreateView):
     
