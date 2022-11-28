@@ -41,15 +41,15 @@
                                 <!-- <span> </span> -->
                             </div>
                             <div class="anime__details__rating">
-                                <div class="rating">
+                                <div class="rating"><p>Rating / {{serie.rating}}</p>
+                                    <!--SISTEMA DE PUNTUACION DE ESTRELLAS-->
                                     <!--<a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-star-half-o"></i></a>-->
                                 </div>
                             </div>
-                            <p class="card-text ">{{ serie.descript|safe }}</p> <!-- ckeditor-->
+                            <p class="card-text ">{{ serie.description|safe }}</p> <!-- ckeditor-->
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
@@ -65,7 +65,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="card-text ">{{ serie.description|safe }}</p>
+
+                            {% if request.user.is_staff %}
                             <p style="text-align: center">
                                 <a href="{% url 'serie:serie-update' serie.id %}">
                                     <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
@@ -73,6 +74,7 @@
                                 &ensp; | &ensp;
                                 <a href="{% url 'serie:serie-delete' serie.id %}">
                                     <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
+                                    {% endif %}
                     <!--PREPARAR AMBOS TEMPLATES-->
                             
                         </div>
