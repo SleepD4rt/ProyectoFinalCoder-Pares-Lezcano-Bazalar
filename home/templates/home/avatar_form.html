@@ -1,0 +1,36 @@
+{% extends "home/index.html" %}
+{% load static %} 
+
+
+{% block title %}
+<title>Avatar</title>
+{% endblock %}
+
+
+<!-- Normal Breadcrumb End -->
+{% block content %}
+<style>
+    label {
+        color: white;
+    }
+
+    .container{
+        align-content: center;
+        -ms-flex-align: center;
+    }
+</style>
+<!-- Login Section Begin -->
+<section class="login spad">
+    <div class="container">
+        <div class="login__form">
+            <h3>Usuario: {{user.username}}</h3>
+            <h3>Cargar Avatar</h3>
+                <form action="" class="input__item" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="site-btn" value="Cargar Avatar"/>
+                </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

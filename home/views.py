@@ -6,25 +6,25 @@ from django.forms.models import model_to_dict
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-from serie.models import Serie
+from home.models import Avatar
 from home.forms import UserRegisterForm
-from home.forms import UserUpdateForm
+from home.forms import AvatarForm
 
 
 def index(request):
     return render(
         request=request,
-        context={},
+        context=get_avatar_url_ctx(request),
         template_name="home/index.html",
     )
 
-"""
+
 def get_avatar_url_ctx(request):
     avatars = Avatar.objects.filter(user=request.user.id)
     if avatars.exists():
         return {"avatar_url": avatars[0].image.url}
     return {}
-"""
+
 
 def register(request):
     form = UserRegisterForm(request.POST) if request.POST else UserRegisterForm()
@@ -56,7 +56,7 @@ def user_update(request):
         context={"form": form},
         template_name="registration/user_form.html",
     )
-
+"""
 
 @login_required
 def avatar_load(request):
@@ -82,4 +82,3 @@ def avatar_load(request):
         context={"form": form},
         template_name="home/avatar_form.html",
     )
-"""
