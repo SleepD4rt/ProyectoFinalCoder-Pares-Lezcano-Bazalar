@@ -58,6 +58,11 @@
                                 <li><a href="./categories.html">Directores</a></li>
 
                                 <li class="active"><a href="./blog.html">Acerca de</a></li>
+                                {% if user.is_authenticated %}
+                                {% if not avatar_url %}
+                                <li><a class="button_custom" href="{% url 'home:avatar-load' %}">Cargar Avatar</a></li>
+                                {% endif %}
+                                {% endif %}
 
                             </ul>
                         </nav>
@@ -70,9 +75,16 @@
                             {% block buscador %}
                             
                             {% endblock %}
+                            {% if user.is_authenticated %}
+                            {% if avatar_url %}
+                                <a href=""><img height="260px" src="{{avatar_url}}"> - {{ user.username }}</a>
+                                
+                            {% endif %}
+                            <a href="{% url 'logout' %}">Cerrar Sesión </a>
+                            {% else %}
 
                             <a href="{% url 'login' %}"><span class="icon_profile"></span></a>
-
+                            {% endif %}
 
                     </div>
                 </div>
