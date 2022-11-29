@@ -26,7 +26,7 @@ class MovieDetailView(DetailView):
     fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
     def get(self, request, pk):
         movie = Movie.objects.get(id=pk)
-        comments = Comment.objects.filter(movie=movie).order_by("-updated_at")
+        comments = Comment.objects.filter(movie=movie)
         comment_form = CommentForm()
         context = {
             "movie": movie,

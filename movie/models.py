@@ -13,7 +13,6 @@ class Movie(models.Model):
     studio = models.CharField(max_length=20)
     image = models.ImageField(upload_to='movie', null=True, blank=True)
     rating = models.FloatField(null=False, blank=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     comments = models.ManyToManyField(
         User, through="Comment", related_name="comments_owned"
     )
