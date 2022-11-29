@@ -9,8 +9,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.admin.views.decorators import staff_member_required
 
+from movie.forms import CommentForm
 from movie.models import Movie
 from movie.forms import MovieForm
+from movie.models import Comment
 
 
 class MovieListView(ListView):
@@ -22,7 +24,16 @@ class MovieDetailView(DetailView):
     model = Movie
     template_name = "movie/movie_detail.html"
     fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
-
+    def get(self, request, pk):
+        movie = Movie.objects.get(id=pk)
+        comments = Comment.objects.filter(movie=movie).order_by("-updated_at")
+        comment_form = CommentForm()
+        context = {
+            "movie": movie,
+            "comments": comments,
+            "comment_form": comment_form,
+        }
+        return render(request, self.template_name, context)
 
 #
 
@@ -89,3 +100,20 @@ def search(request):
         context=context_dict,
         template_name="movie/movie_search.html",
     )
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    def post(self, request, pk):
+        movie = get_object_or_404(Movie, id=pk)
+        comment = Comment(
+            text=request.POST["comment_text"], owner=request.user, movie=movie
+        )
+        comment.save()
+        return redirect(reverse("movie:movie-detail", kwargs={"pk": pk}))
+
+
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Comment
+
+    def get_success_url(self):
+        movie = self.object.movie
+        return reverse("movie:movie-detail", kwargs={"pk": movie.id})
