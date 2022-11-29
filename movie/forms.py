@@ -87,6 +87,10 @@ class MovieForm(forms.ModelForm):
             }
         ),
     )
+
+    class Meta:
+        model = Movie
+        fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
     
 class CommentForm(forms.Form):
     comment_text = forms.CharField(
@@ -109,6 +113,4 @@ class CommentForm(forms.Form):
         ),
     )
 
-    class Meta:
-        model = Movie
-        fields = ["name", "release_date", "director", "description", "image", "studio", "duration", "rating"] 
+    

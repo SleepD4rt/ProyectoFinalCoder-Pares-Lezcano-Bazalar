@@ -75,7 +75,7 @@
 
                       <!-- Comment creation -->
 
-                    <form method="POST" action="{% url 'course:comment-create' movie.id %}">
+                    <form method="POST" action="{% url 'movie:comment-create' movie.id %}">
                         {% csrf_token %}
                         {{ comment_form }}
                     <input type="submit" value="Publicar comentario">
