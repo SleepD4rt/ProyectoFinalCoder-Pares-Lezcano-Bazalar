@@ -19,21 +19,29 @@ class UserRegisterForm(UserCreationForm):
             "password2",
         ]
 
-
 class UserUpdateForm(UserChangeForm):
+    username = forms.CharField(label="Nombre de usuario", min_length=3)
+    email = forms.EmailField(label="Correo electrónico")
     password = None
+
 
     class Meta:
         model = User
         fields = [
+            "username",
             "email",
-
         ]
+       
         widgets = {
             "email": forms.TextInput(attrs={"readonly": "readonly"}),
         }
+
+
 
 class AvatarForm(forms.ModelForm):
     class Meta:
         model = Avatar
         fields = ("image", )
+
+
+

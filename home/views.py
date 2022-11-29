@@ -9,7 +9,7 @@ from django.shortcuts import render
 from home.models import Avatar
 from home.forms import UserRegisterForm
 from home.forms import AvatarForm
-
+from home.forms import UserUpdateForm
 
 def index(request):
     return render(
@@ -40,7 +40,6 @@ def register(request):
         template_name="registration/register.html",
     )
 
-"""
 @login_required
 def user_update(request):
     user = request.user
@@ -56,7 +55,7 @@ def user_update(request):
         context={"form": form},
         template_name="registration/user_form.html",
     )
-"""
+
 
 @login_required
 def avatar_load(request):
