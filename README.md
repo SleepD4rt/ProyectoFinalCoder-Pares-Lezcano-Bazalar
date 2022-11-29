@@ -62,7 +62,9 @@ Gastón Pares:
 
 Realice la App "serie", y acomode el HTML, realize herencias sobre el mismo, aplique la capa de seguridad al proyecto, corregi varios errores de sintaxis y logica, realice los templates de login y registro.
 
-Lucas Ivan Lezcano
+Lucas Ivan Lezcano:
+
+Realice la app "movies" , use herencia de HTML , realice los templates de detail y comfirm_delete , fui aportando ayuda al resto del proyecto trabajando con mi compañero.
 
 
 Laureano Bazalar:
