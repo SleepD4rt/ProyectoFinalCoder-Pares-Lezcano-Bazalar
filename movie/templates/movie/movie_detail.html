@@ -72,7 +72,19 @@
                                 &ensp; | &ensp;
                                 <a href="{% url 'movie:movie-delete' movie.id %}">
                                     <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
-                            {% endif %}
+                                </a>
+                                </p>      
+                              {% endif %}
+
+
+                      <!-- Comment creation -->
+
+                   
+
+
+                
+                    <!--PREPARAR AMBOS TEMPLATES-->
+
                             
                         </div>
                          
@@ -85,7 +97,25 @@
                     <div class="col-lg-8 col-md-8">
                         <div class="anime__details__review">
                             <div class="section-title">
-                                <!--<h5>Reviews</h5>-->
+                                <form method="POST" action="{% url 'movie:comment-create' movie.id %}">
+                                    {% csrf_token %}
+                                    {{ comment_form }}
+                                <input type="submit" value="Publicar comentario">
+                                </form>
+                                {% if not comments %}
+                                    <p></p>
+                                {% endif %}
+            
+                                <!-- Comments list -->
+                                    {% for comment in comments %}
+                                    <p> {{ comment.text }}
+                                        ({{ comment.owner.username }} | {{ comment.updated_at }})
+                                        {% if user == comment.owner or user.is_superuser %}
+                                        <a href="{% url 'movie:comment-delete' comment.id %}"><i class="fa fa-trash" style="color: #881a1a;"></i></a>
+                                        {% endif %}
+                                    </p>
+                                {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
