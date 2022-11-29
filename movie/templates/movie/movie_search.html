@@ -3,9 +3,6 @@
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
                             {% block content %}
-                    
-
-                    
                             <div class="recent__product">
                                 <div class="row">
                                     <div class="col-lg-8 col-md-8 col-sm-8">
@@ -14,15 +11,16 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4">
+                                    {% if request.user.is_staff %}
                                         <div class="btn__all">
                                             <a href="{% url 'movie:movie-add' %}" class="primary-btn">Agregar pelicula<span class="arrow_right"></span></a>
                                         </div>
+                                    {% endif %}
                                     </div>
                                 </div>
                                 <div class="row">
         
-                                    <!-- Messages-->
-               
+                                 <!-- Messages SOLO PARA STAFF-->
                                     <!--DIVISION POR SERIE /PELICULA-->
                                     {% if movies %}
                                     {% for movie in movies %}
@@ -36,23 +34,58 @@
                                                         </div>
                                                     {% endif %}
         
-                                                <div class="ep">{{movie.chapter}}</div>
+                                                <div class="ep">{{movie.duration}} minutos</div>
                                                 <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
                                                 <div class="view"><i class="fa fa-eye"></i> Rating: {{movie.rating}}</div>
                                             </div>
                                             <div class="product__item__text">
-                                                <ul><!--Categorias-->
-                                                    <li>Pelicula</li>
-                                                    <!--<li>Movie</li>-->
+                                                <ul>
+                                                    
+                                                    <li>Movie</li>
+                                                    
                                                 </ul>
-                                                <h5><a href="#">{{movie.name}}</a></h5>
+                                                <h5><a href="{% url 'movie:movie-detail' movie.id %}">{{movie.name}}</a></h5>
                                             </div>
                                         </div>
                                     </div>
                                     {% endfor %}
                                     
                                     {% endif %}
-                                    {% endblock %}
+        
+                                    {% block pagination %}
+                        <!--Pagination Class Based Views-->
+                        {% if is_paginated %}
+                        <div class="container p-4">
+                            <div class="pagination justify-content-center">
+                                <span class="step-links">
+                                    <style>
+                                        a, span {
+                                            color: white;
+                                        }
+                                    </style>
+                                    {% if page_obj.has_previous %}
+                                        <a href="?page=1">&laquo; Primero</a> |
+                                        <a href="?page={{ course_list.previous_page_number }}">Anterior</a> |
+                                    {% endif %}
+                        
+                                    {% if page_obj.paginator.num_pages > 1 %}
+                                    <span class="current">
+                                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                                    </span>
+                                    {% endif %}
+                        
+                                    {% if page_obj.has_next %}
+                                        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a> |
+                                        <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <!--end of Pagination-->
+                    {% endblock %}
+        
+        {% endblock %}
 
   <!-- Footer Section End -->
 

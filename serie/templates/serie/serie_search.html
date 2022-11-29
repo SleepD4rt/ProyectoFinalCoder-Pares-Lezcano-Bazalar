@@ -1,59 +1,91 @@
-
 {% extends "serie/serie_list.html" %}
 {% load static %} 
 
                     <!-- ACA SE MUESTRAN LAS SERIES Y PELICULAS-->
-                            {% block content %}
-                    
+                    {% block content %}
+                    <div class="recent__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>SERIES</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                            {% if request.user.is_staff %}
+                                <div class="btn__all">
+                                    <a href="{% url 'serie:serie-add' %}" class="primary-btn">Agregar serie<span class="arrow_right"></span></a>
+                                </div>
+                            {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
 
-                    
-                            <div class="recent__product">
-                                <div class="row">
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <div class="section-title">
-                                            <h4>SERIES</h4>
-                                        </div>
+                         <!-- Messages SOLO PARA STAFF-->
+                            <!--DIVISION POR SERIE /PELICULA-->
+                            {% if series %}
+                            {% for serie in series %}
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="">
+                                         <!-- Image -->
+                                            {% if serie.image %}
+                                                 <div style="text-align: center;">
+                                                    <img height="250px" src="{{ serie.image.url }}">
+                                                </div>
+                                            {% endif %}
+
+                                        <div class="ep">{{serie.duration}} minutos</div>
+                                        <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
+                                        <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        <div class="btn__all">
-                                            <a href="{% url 'serie:serie-add' %}" class="primary-btn">Agregar Serie<span class="arrow_right"></span></a>
-                                        </div>
+                                    <div class="product__item__text">
+                                        <ul>
+                                            
+                                            <li>Serie</li>
+                                            
+                                        </ul>
+                                        <h5><a href="{% url 'serie:serie-detail' serie.id %}">{{serie.name}}</a></h5>
                                     </div>
                                 </div>
-                                <div class="row">
-        
-                                    <!-- Messages-->
-               
-                                    <!--DIVISION POR SERIE /PELICULA-->
-                                    {% if series %}
-                                    {% for serie in series %}
-                                    <div class="col-lg-4 col-md-6 col-sm-6">
-                                        <div class="product__item">
-                                            <div class="product__item__pic set-bg" data-setbg="">
-                                                 <!-- Image -->
-                                                    {% if serie.image %}
-                                                         <div style="text-align: center;">
-                                                            <img height="250px" src="{{ serie.image.url }}">
-                                                        </div>
-                                                    {% endif %}
-        
-                                                <div class="ep">{{serie.chapter}}</div>
-                                                <div class="comment"><i class="fa fa-comments"></i> Comentarios</div>
-                                                <div class="view"><i class="fa fa-eye"></i> Rating: {{serie.rating}}</div>
-                                            </div>
-                                            <div class="product__item__text">
-                                                <ul><!--Categorias-->
-                                                    <li>Serie</li>
-                                                    <!--<li>Movie</li>-->
-                                                </ul>
-                                                <h5><a href="#">{{serie.name}}</a></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                    
-                                    {% endif %}
-                                    {% endblock %}
+                            </div>
+                            {% endfor %}
+                            
+                            {% endif %}
+
+                            {% block pagination %}
+                <!--Pagination Class Based Views-->
+                {% if is_paginated %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <span class="step-links">
+                            <style>
+                                a, span {
+                                    color: white;
+                                }
+                            </style>
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; Primero</a> |
+                                <a href="?page={{ course_list.previous_page_number }}">Anterior</a> |
+                            {% endif %}
+                
+                            {% if page_obj.paginator.num_pages > 1 %}
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                            </span>
+                            {% endif %}
+                
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a> |
+                                <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
+                <!--end of Pagination-->
+            {% endblock %}
+
+{% endblock %}
 {% block hab_buscador%}
     <!-- Search model Begin -->
     <div class="search-model">
