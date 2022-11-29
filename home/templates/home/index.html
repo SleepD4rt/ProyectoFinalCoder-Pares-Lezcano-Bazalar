@@ -78,7 +78,8 @@
                             <a class="blog__details__comment__item__pic" href=""><img height="40px" src="{{avatar_url}}"> - {{ user.username }}</a>
                                 
                             {% endif %}
-                            <a href="{% url 'logout' %}">Cerrar Sesión </a>
+                            <li><a href="{% url 'logout' %}">Cerrar Sesión </a></li>
+                            <li><a href="{% url 'home:user-update' %}">Editar </a></li>
                             {% else %}
 
                             <a href="{% url 'login' %}"><span class="icon_profile"></span></a>
