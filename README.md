@@ -62,3 +62,9 @@ Gastón Pares:
 
 Realice la App "serie", y acomode el HTML, realize herencias sobre el mismo, aplique la capa de seguridad al proyecto, corregi varios errores de sintaxis y logica, realice los templates de login y registro.
 
+Lucas Ivan Lezcano
+
+
+Laureano Bazalar:
+Se presto a realizar el proyecto los primeros dias, pero se notaba que no sabia como avanzar en el proyecto, con lo basico, requeria ayuda constante, no dijo nada realicionado con el mismo hasta el dia 28/11/2022, dia de entrega del proyecto, por lo que basicamente no realizo nada. 
+
