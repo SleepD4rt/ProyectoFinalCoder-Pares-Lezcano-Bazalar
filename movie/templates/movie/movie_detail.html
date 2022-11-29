@@ -38,12 +38,12 @@
                         <div class="anime__details__text">
                             <div class="anime__details__title">
                                 <h3>{{ movie.name }}</h3>
-                                <!-- <span> </span> -->
+
                             </div>
                             <div class="anime__details__rating">
-                                <div class="rating">
+                                <div class="rating"><p>Rating / {{movie.rating}}</p>
+                                    <!--SISTEMA DE PUNTUACION DE ESTRELLAS-->
                                     <!--<a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-star-half-o"></i></a>-->
@@ -63,7 +63,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="card-text ">{{ movie.description|safe }}</p>
+
+                            {% if request.user.is_staff %}
                             <p style="text-align: center">
                                 <a href="{% url 'movie:movie-update' movie.id %}">
                                     <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar
@@ -71,6 +72,7 @@
                                 &ensp; | &ensp;
                                 <a href="{% url 'movie:movie-delete' movie.id %}">
                                     <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar 
+                              {% endif %}
 
 
                       <!-- Comment creation -->
@@ -98,6 +100,7 @@
 
                 
                     <!--PREPARAR AMBOS TEMPLATES-->
+
                             
                         </div>
                          

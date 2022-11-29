@@ -22,11 +22,11 @@ class serieListView(ListView):
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
 
 #LoginRequiredMixin
-class SerieCreateView(CreateView):
+class SerieCreateView(LoginRequiredMixin, CreateView):
     model = Serie
 
     success_url = reverse_lazy("serie:serie-list")
@@ -56,16 +56,16 @@ class SerieCreateView(CreateView):
             return super().form_valid(form)
 
 #LoginRequiredMixin
-class SerieUpdateView(UpdateView):
+class SerieUpdateView(LoginRequiredMixin, UpdateView):
     model = Serie
-    fields = ["name", "descript", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]
         return reverse_lazy("serie:serie-detail", kwargs={"pk": serie_id})
 
 #LoginRequiredMixin
-class SerieDeleteView(DeleteView):
+class SerieDeleteView(LoginRequiredMixin, DeleteView):
     model = Serie
     success_url = reverse_lazy("serie:serie-list")
     
