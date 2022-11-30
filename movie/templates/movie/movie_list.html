@@ -66,9 +66,9 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            
-                            {% endif %}
 
+
+                            {% endif %}
                             {% block pagination %}
                 <!--Pagination Class Based Views-->
                 {% if is_paginated %}
@@ -100,9 +100,8 @@
                 </div>
                 {% endif %}
                 <!--end of Pagination-->
-            {% endblock %}
-
-{% endblock %}
+                {% endblock %}
+                {% endblock %}         
 
 {% block hab_buscador%}
           <!-- Search model Begin -->

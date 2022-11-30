@@ -16,7 +16,7 @@ from serie.models import Serie
 
 class serieListView(ListView):
     model = Serie
-    paginate_by = 3
+    paginate_by = 2
 
 
 class SerieDetailView(DetailView):

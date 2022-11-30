@@ -3,6 +3,11 @@
 
 
 {% block content %}
+<style>
+    p, span, h1, h2, h3 {
+        color: white;
+    }
+</style>
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
@@ -31,7 +36,6 @@
                                     <div style="text-align: center;">
                                        <img height="250px" src="{{ serie.image.url }}">
                                    </div>
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -81,47 +85,6 @@
                          
 
                                     
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-8">
-                    <div class="anime__details__review">
-                        <div class="section-title">
-                            <style>
-                                p, span {
-                                    color: white;
-                                }
-                            </style>
-                            <form method="POST" action="{% url 'serie:comment-create' serie.id %}">
-                                {% csrf_token %}
-                                {{ comment_form }}
-                            <input type="submit" value="Publicar comentario">
-                            </form>
-                            {% if not comments %}
-                                <p></p>
-                            {% endif %}
-        
-                            <!-- Comments list -->
-                                {% for comment in comments %}
-                                <p> {{ comment.text }}
-                                    ({{ comment.owner.username }} | {{ comment.updated_at }})
-                                    {% if user == comment.owner or user.is_superuser %}
-                                    <a href="{% url 'serie:comment-delete' comment.id %}"><i class="fa fa-trash" style="color: #881a1a;"></i></a>
-                                    {% endif %}
-                                </p>
-                            {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Anime Section End -->
 
 {% endblock %}
 

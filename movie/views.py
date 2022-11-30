@@ -16,7 +16,7 @@ from movie.models import Comment
 
 class MovieListView(ListView):
     model = Movie
-    paginate_by = 3
+    paginate_by = 2
 
 
 class MovieDetailView(DetailView):

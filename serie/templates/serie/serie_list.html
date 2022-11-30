@@ -85,8 +85,39 @@
                             {% endfor %}
                             
                             {% endif %}
+                            <!--Pagination Class Based Views-->
+                {% if is_paginated %}
+                <div class="container p-4">
+                    <div class="pagination justify-content-center">
+                        <span class="step-links">
+                            <style>
+                                a, span {
+                                    color: white;
+                                }
+                            </style>
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; Primero</a> |
+                                <a href="?page={{ course_list.previous_page_number }}">Anterior</a> |
+                            {% endif %}
+                
+                            {% if page_obj.paginator.num_pages > 1 %}
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+                            </span>
+                            {% endif %}
+                
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a> |
+                                <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                {% endif %}
+                <!--end of Pagination-->
+                {% endblock %}
 
-{% endblock %}
+               
 
 {% block hab_buscador%}
           <!-- Search model Begin -->
