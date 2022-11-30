@@ -7,7 +7,6 @@ from django.views.generic import ListView
 from django.db.models import Q
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib.admin.views.decorators import staff_member_required
 
 from movie.forms import CommentForm
 from movie.models import Movie
@@ -17,7 +16,7 @@ from movie.models import Comment
 
 class MovieListView(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 3
 
 
 class MovieDetailView(DetailView):

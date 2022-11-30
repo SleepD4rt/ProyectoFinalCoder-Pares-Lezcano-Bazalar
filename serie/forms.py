@@ -111,7 +111,7 @@ class SerieForm(forms.ModelForm):
 
     class Meta:
         model = Serie
-        fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+        fields = ["name", "description", "release_date", "chapter", "season", "rating", "image", "director", "actor", "studio"]
 
 
 """
@@ -135,5 +135,4 @@ class CommentForm(forms.Form):
             }
         ),
     )
-
 """

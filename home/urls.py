@@ -7,6 +7,7 @@ from home import views
 app_name = "home"
 urlpatterns = [
     path("", views.index, name="index"),
+    path("about", views.about, name="about"),
     path('avatar/load', views.avatar_load, name='avatar-load'),
     path("register/", views.register, name="user-register"),
     path('register/update/', views.user_update, name='user-update'),

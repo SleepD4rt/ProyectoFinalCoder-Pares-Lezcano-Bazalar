@@ -22,8 +22,7 @@ class serieListView(ListView):
 class SerieDetailView(DetailView):
     model = Serie
     template_name = "serie/serie_detail.html"
-    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
-
+    fields = ["name", "description", "release_date", "chapter", "season", "rating", "image", "director", "actor", "studio"]
 
 #LoginRequiredMixin
 class SerieCreateView(LoginRequiredMixin, CreateView):
@@ -58,7 +57,7 @@ class SerieCreateView(LoginRequiredMixin, CreateView):
 #LoginRequiredMixin
 class SerieUpdateView(LoginRequiredMixin, UpdateView):
     model = Serie
-    fields = ["name", "description", "chapter", "season", "rating", "image", "director", "actor", "studio", "release_date"]
+    fields = ["name", "description", "release_date", "chapter", "season", "rating", "image", "director", "actor", "studio"]
 
     def get_success_url(self):
         serie_id = self.kwargs["pk"]
@@ -92,8 +91,8 @@ def search(request):
     
 
 """
-#LoginRequiredMixin
-class CommentCreateView(CreateView):
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
     def post(self, request, pk):
         serie = get_object_or_404(serie, id=pk)
         comment = Comment(
@@ -102,8 +101,8 @@ class CommentCreateView(CreateView):
         comment.save()
         return redirect(reverse("serie:serie-detail", kwargs={"pk": pk}))
 
-#LoginRequiredMixin
-class CommentDeleteView(DeleteView):
+
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
 
     def get_success_url(self):

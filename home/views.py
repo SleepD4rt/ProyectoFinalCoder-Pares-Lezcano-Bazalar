@@ -17,6 +17,13 @@ def index(request):
         context=get_avatar_url_ctx(request),
         template_name="home/index.html",
     )
+    
+def about(request):
+    return render(
+        request=request,
+        context=get_avatar_url_ctx(request),
+        template_name="home/about.html",
+    )
 
 
 def get_avatar_url_ctx(request):
