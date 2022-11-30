@@ -4,6 +4,11 @@
 
 {% block content %}
     <!-- Breadcrumb Begin -->
+    <style>
+        p, span, h1, h2, h3 {
+            color: white;
+        }
+    </style>
     <div class="breadcrumb-option">
         <div class="container">
             <div class="row">
@@ -31,7 +36,6 @@
                                     <div style="text-align: center;">
                                        <img height="250px" src="{{ movie.image.url }}">
                                    </div>
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -58,7 +62,7 @@
                                             <li><span>Estreno:</span>{{movie.release_date}}</li>
                                             <li><span>Director:</span>{{movie.director}}</li>
                                             <li><span>Estudio:</span>{{movie.studio}}</li>
-                                            <li><span>Duracion:</span>{{movie.duration}}M</li>
+                                            <li><span>Duracion:</span>{{movie.duration}} Minutos.</li>
                                         </ul>
                                     </div>
                                 </div>

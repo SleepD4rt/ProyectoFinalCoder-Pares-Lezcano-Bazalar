@@ -1,0 +1,20 @@
+{% extends "movie/movie_list.html" %}
+
+{% load static %} 
+
+{% block delete %}
+<style>
+    p { color: white;
+        
+    }
+</style>
+<p>Estás seguro de eliminar el cometario : {{ comment.text }}?</p> 
+
+<div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Si, eliminar.">
+    <a class="btn btn-primary" href="{% url 'movie:movie-detail' comment.movie.id %}" >Cancelar</a>
+</form>
+<div>
+{% endblock %}

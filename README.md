@@ -53,7 +53,9 @@ ejecutar el servidor:
 ```bash
 python manage.py runserver
 ```
+Explicacion de uso de la App desde el video en este link:
 
+https://www.youtube.com/watch?v=axqEmfKFEII
 
 
 Trabajo divido entre los participantes.
