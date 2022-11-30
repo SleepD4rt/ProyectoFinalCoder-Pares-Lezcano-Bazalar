@@ -64,7 +64,7 @@ Realice la App "serie", y acomode el HTML, realize herencias sobre el mismo, apl
 
 Lucas Ivan Lezcano:
 
-Realice la app "movies" , use herencia de HTML , realice los templates de detail y comfirm_delete , fui aportando ayuda al resto del proyecto trabajando con mi compañero.
+Realice la app "movies" , use herencia de HTML , realice los templates de detail , editar y eliminar movies , editar y cambiar contraseñas de usuario y  fui aportando ayuda al resto del proyecto trabajando con mi compañero.
 
 
 Laureano Bazalar:
